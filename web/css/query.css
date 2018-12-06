@@ -1,0 +1,24 @@
+/**电脑**/
+@media screen and (min-width:1200px){
+	
+}
+
+/**iPad、手机横向**/
+@media screen and (min-width: 960px) and (max-width: 1199px) {
+
+}
+
+/**iPad、手机竖向**/
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+/**手机**/
+@media only screen and (min-width: 480px) and (max-width: 767px){
+
+}
+
+/**手机viewport**/
+@media only screen and (max-width: 479px) {
+
+}

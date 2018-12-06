@@ -1,0 +1,13 @@
+自2016-07-21的v2.7.1开始记录
+
+- 根目录新增web目录。原根目录下js、css文件夹移动到web目录下。（web目录将是传统项目的前台。admin与web目录并行更合理。如果有微信端、APP的API等，可建立与web并行的目录）
+
+- 整合lib/function_common中功能较为一致的函数成为类。如curl类、paramcheck类、Env类（获取各种环境数据）等
+
+- 修正了分页函数dspPages
+
+2016/8/10 v2.8.1
+
+1、config.inc.php默认打开时区设置
+2、修改function_common中json_encode_cn的preg_replace（PHP5.5不支持\e）
+

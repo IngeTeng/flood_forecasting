@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>layDate Demo</title>
+<script src="laydate/laydate.js"></script>
+<style>
+	html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
+	h2{line-height:30px; font-size:20px;}
+	a,a:hover{ text-decoration:none;}
+	pre{font-family:'微软雅黑'}
+	.box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+	.box a{padding-right:20px;}
+</style>
+</head>
+<body>
+	<div class="box">
+		演示：<input  placeholder="请输入日期" class="laydate-icon" id="demo" >
+	</div>
+	<script>
+		laydate({
+			elem: '#demo', //需显示日期的元素选择器
+	        event: 'click', //触发事件
+	        format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+	        istime: false, //是否开启时间选择
+	        isclear: true, //是否显示清空
+	        istoday: true, //是否显示今天
+	        issure: true, //是否显示确认
+	        festival: true, //是否显示节日
+	        //min: '1900-01-01 00:00:00', //最小日期
+	       	//max: '2099-12-31 23:59:59', //最大日期
+	        //start: '2014-6-15 23:00:00',    //开始日期
+	        //fixed: false, //是否固定在可视区域
+	        //zIndex: 99999999, //css z-index
+	        choose: function(dates){ //选择好日期的回调
+
+	        }
+		});
+	</script>
+        
+</body>
+</html>

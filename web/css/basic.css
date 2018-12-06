@@ -1,0 +1,25 @@
+/*basic*/
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 14px;
+	font-family: Microsoft Yahei, "微软雅黑", Arial;
+	color: #333;
+}
+a {
+	text-decoration: none;
+}
+img {
+	border: none;
+}
+li {
+	list-style: none;
+}
+.center {
+	text-align: center;
+}
+.clear {
+	clear: both;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="Neptune工作室" />
+		<title> 登陆 - 管理系统</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<link rel="stylesheet" href="css/boxy.css" type="text/css" />
+		<link rel="stylesheet" href="css/form.css" type="text/css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/layer/layer.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				/**按Enter登录**/
+				$('#loginform').keydown(function(e){
+				
+					 var e = e || event,
+					 keycode = e.which || e.keyCode;
+					 
+					 if (keycode == 13) {
+						$("#btn_login").trigger("click");
+					 }
+				});
+				/**点击刷新验证码**/
+				$('#vercodeimg').click(function(){
+					$(this).attr('src', 'vercode.php?'+Math.random());
+				});
+				/**点击登录**/
+				$('#btn_login').click(function(){
+					var ac      = $('input[name="account"]').val();
+					var pwd     = $('input[name="pwd"]').val();
+					var vercode = $('input[name="vercode"]').val();
+					var remember = 0;
+					if($('.remember').prop('checked')){
+						remember = 1;
+					}
+					
+					if(ac == ''){
+						$('input[name="account"]').focus();
+						return false;
+					}
+					if(pwd == ''){
+						$('input[name="pwd"]').focus();
+						return false;
+					}
+					if(vercode == ''){
+						$('input[name="vercode"]').focus();
+						return false;
+					}
+                    
+					$.ajax({
+						type        : 'POST',
+						data        : {
+								account   : ac,
+								pass      : pwd,
+								vercode   : vercode,
+								remember  : remember
+						},
+						dataType : 'json',
+						url :         'adminlogin_do.php',
+						success :     function(data){
+											console.log('11');
+											code = data.code;
+											msg  = data.msg;
+											switch(code){
+												case 1:
+													location.href = 'index.php';
+													break;
+												default:
+													layer.alert(msg, {icon: 5});
+											}
+									  }
+					});
+				});
+		
+			});
+		</script>
+	
+	</head>
+	<body id="bg">
+	<div id="login_header">
+		<div class="navbar-container">
+			<span class="logo"><a href="#" title="微普科技"><img src="images/logo.jpg" height="40" /></a></span>
+			<!-- <span><a href="#">&gt; 返回到官网</a></span> -->
+		</div>
+	</div>
+	<div id="login_container">
+		<div class="login_top">网站管理系统</div>
+		<div class="login_content">
+			<form action="adminlogin_do.php" id="loginform" method="post">
+				<p class="text">账号</p>
+				<p><input type="text" name="account" class="input-text" ></p>
+				<p class="text">密码</p>
+				<p><input type="password" name="pwd" class="input-text" ></p>
+				<p class="text">验证码</p>
+				<p>
+					<input type="text" name="vercode" class="input-text vercode" >
+					<img src="vercode.php" class="vercode-img" height="30" alt="刷新换一张" id="vercodeimg"/>
+				</p>
+				<p class="submit-line">
+					<div class="pull-left">
+						<input type="checkbox" name="remember" class="remember" id="remember" value="1">
+						<label id="remember-label" for="remember">记住我</label>
+					</div>
+					<div class="pull-right">
+						<input type="button" id="btn_login" class="btn_submit" value="登 陆" />
+					</div>
+					<div class="clear"></div>
+				</p>
+			</form>
+		</div>
+	</div>
+	<div id="footer">
+		<a href="#" target="_blank">东华大学</a> 版权所有
+	</div>
+	</body>
+</html>
